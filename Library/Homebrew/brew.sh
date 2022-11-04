@@ -6,6 +6,9 @@
 # Doesn't need a default case because we don't support other OSs
 # shellcheck disable=SC2249
 HOMEBREW_PROCESSOR="$(uname -m)"
+if [[ "${HOMEBREW_PROCESSOR}" == "aarch64" ]] && [[ -n "${HOMEBREW_LINUX_ROSETTA}" ]]; then
+  HOMEBREW_PROCESSOR="x86_64"
+fi
 HOMEBREW_PHYSICAL_PROCESSOR="${HOMEBREW_PROCESSOR}"
 HOMEBREW_SYSTEM="$(uname -s)"
 case "${HOMEBREW_SYSTEM}" in
